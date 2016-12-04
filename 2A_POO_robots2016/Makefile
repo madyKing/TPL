@@ -21,24 +21,50 @@
 #   -classpath : repertoire dans lequel sont cherches les .class deja compiles
 #   -sourcepath : repertoire dans lequel sont cherches les .java (dependances)
 
-all: testInvader testLecture
+all: testInvader testLecture testLecture testScenario0 testScenario1 testStrategieElementaire testStrategieEvoluee
 
 testInvader:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestInvader.java
 
 testLecture:
-	javac -d bin -sourcepath src src/TestLecteurDonnees.java
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestLecteurDonnees.java
+
+testScenario0:
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestScenario0.java
+
+testScenario1:
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestScenario1.java
+
+testStrategieElementaire:
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestStrategieElementaire.java
+
+testStrategieEvoluee:
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestStrategieEvoluee.java
+
 
 # Execution:
 # on peut taper directement la ligne de commande :
 #   > java -classpath bin:bin/gui.jar TestInvader
 # ou bien lancer l'execution en passant par ce Makefile:
 #   > make exeInvader
-exeInvader: 
+exeInvader:
 	java -classpath bin:bin/gui.jar TestInvader
 
-exeLecture: 
+exeLecture:
 	java -classpath bin TestLecteurDonnees cartes/carteSujet.map
+
+exeScenario0:
+	java -classpath bin:bin/gui.jar TestScenario0 cartes/carteSujet.map
+
+exeScenario1:
+	java -classpath bin:bin/gui.jar TestScenario1 cartes/carteSujet.map
+
+exeStrategieElementaire:
+	java -classpath bin:bin/gui.jar TestStrategieElementaire cartes/carteSujet.map
+
+exeStrategieEvoluee:
+	java -classpath bin:bin/gui.jar TestStrategieEvoluee cartes/carteSujet.map
+
 
 clean:
 	rm -rf bin/*.class
